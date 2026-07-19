@@ -23,6 +23,8 @@ jobs:
       - run: ./target/release/mcp-sentry --version
       - run: ./target/release/mcp-sentry list | head -5
       - name: rustfmt
+        # rustfmt 1.97 may reformat whitespace from what 1.94 produced
+        # locally; cosmetic only. Don't fail the build.
         run: cargo fmt --all -- --check || echo "::warning::rustfmt diff (non-blocking)"
       - name: clippy
         run: cargo clippy --all-targets -- -D warnings
