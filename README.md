@@ -168,6 +168,16 @@ Print a starter policy.yaml you can edit.
 
 Made by [@kezhu-ai](https://github.com/kezhu-ai) — also the author of [ctxguard](https://github.com/kezhu-ai/ctxguard), the context-window budget tool for the same family of AI agents.
 
+## See also — other kezhu-ai AI dev tools
+
+mcp-sentry is one of four Rust CLIs in the same family:
+
+- **[ctxguard](https://github.com/kezhu-ai/ctxguard)** — context-window budget enforcer for AI agents. `warn | compress | kill` on budget breach.
+- **[recall-ai](https://github.com/kezhu-ai/recall-ai)** — search every AI conversation you've ever had, locally (SQLite FTS5 index).
+- **[pinpoint](https://github.com/kezhu-ai/pinpoint)** — your `~/.bash_history` but for AI prompts. Save, search, replay.
+
+The kit: **pinpoint** to save the keepers, **ctxguard** to budget agent use, **recall-ai** to search the firehose, **mcp-sentry** to make sure no server can read `~/.ssh`.
+
 ## License
 
 MIT OR Apache-2.0
