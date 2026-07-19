@@ -1,7 +1,7 @@
 //! MCP config discovery across well-known client paths.
 
 use std::collections::BTreeMap;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 use anyhow::Result;
 use serde::Deserialize;
 use tabled::{Table, Tabled};
@@ -112,7 +112,7 @@ fn parse_toml(path: &PathBuf) -> Result<Vec<(String, McpEntry)>> {
     Ok(out)
 }
 
-fn to_server(name: String, client: &str, source: &PathBuf, e: McpEntry) -> Server {
+fn to_server(name: String, client: &str, source: &Path, e: McpEntry) -> Server {
     Server {
         name,
         client: client.to_string(),
