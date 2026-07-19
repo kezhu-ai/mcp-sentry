@@ -1,0 +1,31 @@
+# Example policy.yaml — strict-by-default, read-only tools allowed
+# Usage: mcp-sentry wrap --policy ./policy.yaml -- <server-command>
+
+version: 1
+default: deny
+rules:
+- tool: '*__read_*'
+  action: allow
+  reason: read is safe
+- tool: '*__list_*'
+  action: allow
+  reason: list is safe
+- tool: '*__search_*'
+  action: allow
+  reason: search is safe
+- tool: '*__get_*'
+  action: allow
+  reason: get is safe
+- tool: '*__delete_*'
+  action: deny
+  reason: delete is destructive
+- tool: '*__write_*'
+  action: prompt
+  reason: write needs approval
+- tool: '*__exec_*'
+  action: deny
+  reason: exec is high-risk
+- tool: '*__run_*'
+  action: deny
+  reason: run is high-risk
+

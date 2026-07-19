@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+jobs:
+  test:
+    name: build + clippy
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: mcp-sentry -> target
+      - run: cargo build --release --locked
+      - run: ./target/release/mcp-sentry --version
+      - run: ./target/release/mcp-sentry list | head -5
+      - name: rustfmt
+        run: cargo fmt --all -- --check || echo "::warning::rustfmt diff (non-blocking)"
+      - name: clippy
+        run: cargo clippy --all-targets -- -D warnings

@@ -1,0 +1,28 @@
+[package]
+name = "mcp-sentry"
+version = "0.1.0"
+edition = "2021"
+description = "Local-first policy-as-code firewall for MCP servers (Claude Code, Codex CLI, Cursor)"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/kezhu-ai/mcp-sentry"
+keywords = ["mcp", "ai", "cli", "security", "policy"]
+categories = ["command-line-utilities", "development-tools"]
+
+[dependencies]
+clap = { version = "4.5", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_yaml = "0.9"
+toml = "0.8"
+anyhow = "1"
+chrono = { version = "0.4", features = ["serde"] }
+tabled = "0.15"
+walkdir = "2"
+dirs = "5"
+regex = "1"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+strip = true
